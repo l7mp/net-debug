@@ -2,7 +2,8 @@
 FROM debian:stable-slim
 
 # Update the repository sources list and install deb packages
-RUN apt-get update && apt-get install -qq -y \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
      tcpdump \
      iproute2 \
      procps \
@@ -24,6 +25,7 @@ RUN apt-get update && apt-get install -qq -y \
      traceroute \
      ethtool \
      iputils-ping \
+     bmon \
     && apt-get clean
 
 RUN curl -Lo /websocat.deb https://github.com/vi/websocat/releases/download/v1.4.0/websocat_1.4.0_ssl1.1_amd64.deb \
