@@ -13,21 +13,21 @@ Assorted network debugging goodies, like `tcpdump`, `socat`/`websocat`, `iperf`,
 
 ## Usage example
 
-The following snippet starts a net-debug container in nost namespace:
+This Deployment starts a `net-debug` pod in host namespace:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: net-debug-host
+  name: net-debug
 spec:
   selector:
     matchLabels:
-      app: net-debug-host
+      app: net-debug
   replicas: 1
   template:
     metadata:
       labels:
-        app: net-debug-host
+        app: net-debug
     spec:
       hostNetwork: true
       containers:
