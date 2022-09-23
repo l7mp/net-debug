@@ -13,7 +13,7 @@ Assorted network debugging goodies, like `tcpdump`, `socat`/`websocat`, `iperf`,
 
 ## Usage example
 
-This Deployment starts a `net-debug` pod in host namespace:
+This Deployment starts a `net-debug` pod in host network:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
