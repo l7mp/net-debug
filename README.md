@@ -9,7 +9,7 @@
 
 ## Description
 
-Assorted network debugging goodies, like `tcpdump`, `socat`/`websocat`, `iperf`, `nmap`, `nslookup`, `dig`, `tcpreplay`, and `ping`/`traceroute`, all packaged in a self-contained Debian image. The intended use is to sideload the container as a sidecar to Kubernetes pods in order to debug network reachability and performance issues.
+Assorted network debugging goodies, like `tcpdump`, `socat`/`websocat`, `iperf`, `nmap`, `nslookup`, `dig`, `tcpreplay`, and `ping`/`traceroute`, all packaged in a self-contained Docker image. The intended use is to sideload the container as a sidecar to Kubernetes pods in order to debug network reachability and performance issues.
 
 ## Usage example
 
