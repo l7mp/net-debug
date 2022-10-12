@@ -26,7 +26,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     tcpreplay
 
 RUN curl -Lo /usr/bin/websocat \
-    https://github.com/vi/websocat/releases/download/v1.11.0/websocat.x86_64-unknown-linux-musl \
+    https://github.com/vi/websocat/releases/download/v1.11.0/websocat.$(apk --print-arch)-unknown-linux-musl \
     && chmod a+x /usr/bin/websocat
 
 # RUN /usr/sbin/sysctl -w net.ipv4.ip_forward=0
