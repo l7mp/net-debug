@@ -1,0 +1,19 @@
+name: "push alpine"
+
+on:
+  push:
+    branches:
+      - alpine
+
+jobs:
+  push_to_registry:
+    name: Push Alpine docker image to DockerHub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+      - name: Build the Alpine Docker image
+        run: docker build . --file Dockerfile --tag l7mp/net-debug:alpine
+      - name: Push the Alpine Docker image
+        run: docker push l7mp/net-debug:alpine
