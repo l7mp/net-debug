@@ -20,9 +20,8 @@ RUN apk add --no-cache \
     socat \
     tcpdump \
     traceroute \
-    wget
-
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    wget \
+    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     tcpreplay
 
 RUN curl -Lo /usr/bin/websocat \
