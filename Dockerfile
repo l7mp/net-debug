@@ -1,6 +1,7 @@
 FROM alpine:latest
 
 RUN apk add --no-cache \
+    bash \
     bmon \
     bridge-utils \
     curl \
