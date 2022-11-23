@@ -31,4 +31,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: l7mp/net-debug:latest
+          tags: l7mp/net-debug:latest,l7mp/net-debug:${{steps.vars.outputs.tag}}
