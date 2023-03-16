@@ -20,6 +20,8 @@ jobs:
           images: l7mp/net-debug
           tags: |
             type=semver,pattern={{version}}
+            type=raw,value=latest
+            type=raw,value=alpine
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
