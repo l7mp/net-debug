@@ -1,11 +1,11 @@
 ###########
 # BUILD
 # Build turncat
-FROM golang:1.19-alpine as builder
+FROM golang:1.21-alpine as builder
 
 WORKDIR /app
 RUN apk add --no-cache git tar wget upx
-RUN wget https://github.com/l7mp/stunner/archive/refs/tags/v0.15.0.tar.gz -O stunner.tar.gz \
+RUN wget https://github.com/l7mp/stunner/archive/refs/tags/v0.16.0.tar.gz -O stunner.tar.gz \
     && tar --strip-components=1 -zxf stunner.tar.gz -C .
 RUN apkArch="$(apk --print-arch)"; \
       case "$apkArch" in \
