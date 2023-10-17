@@ -45,7 +45,7 @@ RUN apk add --no-cache \
     tcpreplay
 
 RUN curl -Lo /usr/bin/websocat \
-    https://github.com/vi/websocat/releases/download/v1.11.0/websocat.$(apk --print-arch)-unknown-linux-musl \
+    https://github.com/vi/websocat/releases/download/v1.12.0/websocat.$(apk --print-arch)-unknown-linux-musl \
     && chmod a+x /usr/bin/websocat
 
 # RUN /usr/sbin/sysctl -w net.ipv4.ip_forward=0
