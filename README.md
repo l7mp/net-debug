@@ -35,6 +35,10 @@ spec:
         image: l7mp/net-debug
 ```
 
+## Help
+
+Development is coordinated in Discord, feel free to [join](https://discord.gg/DyPgEsbwzc).
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for full text.
