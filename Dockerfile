@@ -40,6 +40,7 @@ RUN apk add --no-cache \
     socat \
     tcpdump \
     traceroute \
+    tar \
     wget \
     && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     tcpreplay
