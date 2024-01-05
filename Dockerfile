@@ -13,7 +13,7 @@ RUN apkArch="$(apk --print-arch)"; \
         *) export GOARCH='amd64' ;; \
       esac; \
     CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -trimpath -o turncat cmd/turncat/main.go
-RUN upx --lzma turncat
+RUN upx --best --lzma turncat
 
 ####
 # NET-DEBUG
