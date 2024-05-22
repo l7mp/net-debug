@@ -1,23 +1,29 @@
 ###########
 # BUILD
-# Build turncat
-FROM golang:1.21-alpine as builder
+# Download and compress external binaries
+FROM alpine:3.20 as builder
 
 WORKDIR /app
-RUN apk add --no-cache git tar wget upx
-RUN wget https://github.com/l7mp/stunner/archive/refs/tags/v0.18.0.tar.gz -O stunner.tar.gz \
-    && tar --strip-components=1 -zxf stunner.tar.gz -C .
+RUN apk add --no-cache curl upx
+RUN echo $(apk --print-arch)
+RUN curl -Lo websocat \
+     https://github.com/vi/websocat/releases/download/v1.13.0/websocat.$(apk --print-arch)-unknown-linux-musl \
+    && chmod a+x websocat \
+    && upx --best --lzma websocat
+
 RUN apkArch="$(apk --print-arch)"; \
       case "$apkArch" in \
-        aarch64) export GOARCH='arm64' ;; \
-        *) export GOARCH='amd64' ;; \
-      esac; \
-    CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -trimpath -o turncat cmd/turncat/main.go
-RUN upx --best --lzma turncat
+        aarch64) export ARCH='arm64' ;; \
+        *) export ARCH='amd64' ;; \
+    esac; \
+    curl -Lo turncat \
+     https://github.com/l7mp/stunner/releases/download/v0.18.0/turncat-v0.18.0-linux-$ARCH \
+    && chmod a+x turncat \
+    && upx --best --lzma turncat
 
 ####
 # NET-DEBUG
-FROM alpine:3.19
+FROM alpine:3.20
 
 RUN apk add --no-cache \
     bash \
@@ -42,15 +48,11 @@ RUN apk add --no-cache \
     traceroute \
     tar \
     wget \
-    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     tcpreplay
-
-RUN curl -Lo /usr/bin/websocat \
-    https://github.com/vi/websocat/releases/download/v1.12.0/websocat.$(apk --print-arch)-unknown-linux-musl \
-    && chmod a+x /usr/bin/websocat
 
 # RUN /usr/sbin/sysctl -w net.ipv4.ip_forward=0
 
+COPY --from=builder /app/websocat /usr/bin/
 COPY --from=builder /app/turncat /usr/bin/
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
