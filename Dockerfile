@@ -3,11 +3,14 @@
 # Download and compress external binaries
 FROM alpine:3.20 as builder
 
+ENV TURNCAT_VERSION=v0.19.0
+ENV WEBSOCAT_VERSION=v1.13.0
+
 WORKDIR /app
 RUN apk add --no-cache curl upx
 RUN echo $(apk --print-arch)
 RUN curl -Lo websocat \
-     https://github.com/vi/websocat/releases/download/v1.13.0/websocat.$(apk --print-arch)-unknown-linux-musl \
+     https://github.com/vi/websocat/releases/download/$WEBSOCAT_VERSION/websocat.$(apk --print-arch)-unknown-linux-musl \
     && chmod a+x websocat \
     && upx --best --lzma websocat
 
@@ -17,7 +20,7 @@ RUN apkArch="$(apk --print-arch)"; \
         *) export ARCH='amd64' ;; \
     esac; \
     curl -Lo turncat \
-     https://github.com/l7mp/stunner/releases/download/v0.18.0/turncat-v0.18.0-linux-$ARCH \
+     https://github.com/l7mp/stunner/releases/download/$TURNCAT_VERSION/turncat-$TURNCAT_VERSION-linux-$ARCH \
     && chmod a+x turncat \
     && upx --best --lzma turncat
 
