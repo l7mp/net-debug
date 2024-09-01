@@ -1,7 +1,7 @@
 ###########
 # BUILD
 # Download and compress external binaries
-FROM alpine:3.20 as builder
+FROM alpine:3.20 AS builder
 
 ENV TURNCAT_VERSION=v0.20.0
 ENV WEBSOCAT_VERSION=v1.13.0
@@ -58,4 +58,4 @@ RUN apk add --no-cache \
 COPY --from=builder /app/websocat /usr/bin/
 COPY --from=builder /app/turncat /usr/bin/
 
-CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+CMD ["exec", "/bin/bash", "-c", "'trap : TERM INT; sleep infinity & wait'"]
