@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: net-debug-host
+spec:
+  selector:
+    matchLabels:
+      app: net-debug-host
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: net-debug-host
+    spec:
+      hostNetwork: true
+      containers:
+      - name: net-debug
+        image: l7mp/net-debug
+        securityContext:
+          privileged: true

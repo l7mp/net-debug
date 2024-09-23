@@ -11,28 +11,32 @@
 
 Assorted network debugging goodies, like `tcpdump`, `socat`/`websocat`, `iperf`, `nmap`, `nslookup`, `dig`, `tcpreplay`, and `ping`/`traceroute`, all packaged in a self-contained Docker image. The intended use is to sideload the container as a sidecar to Kubernetes pods in order to debug network reachability and performance issues.
 
-## Usage example
+## Usage examples
 
-This Deployment starts a `net-debug` pod in host network:
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: net-debug
-spec:
-  selector:
-    matchLabels:
-      app: net-debug
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: net-debug
-    spec:
-      hostNetwork: true
-      containers:
-      - name: net-debug
-        image: docker.io/l7mp/net-debug
+### Create a Deployment
+
+Config: [yaml](examples/net-debug.yaml)
+
+Usage:
+```console
+kubectl apply -f examples/net-debug.yaml
+```
+
+### Create a Deployment in host network
+Config: [yaml](examples/net-debug-host.yaml)
+
+Usage:
+```console
+kubectl apply -f examples/net-debug-host.yaml
+```
+
+### Create a DeamonSet in host network
+
+Config: [yaml](examples/net-debug-daemonset.yaml)
+
+Usage:
+```console
+kubectl apply -f examples/net-debug-dameonset.yaml
 ```
 
 ## Help

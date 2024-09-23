@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: net-debug-host
+spec:
+  selector:
+    matchLabels:
+      app: net-debug-host
+  template:
+    metadata:
+      labels:
+        app: net-debug-host
+    spec:
+      tolerations:
+      # these tolerations are to have the daemonset runnable on control plane nodes
+      # remove them if your control plane nodes should not run pods
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      hostNetwork: true
+      containers:
+      - name: net-debug
+        image: l7mp/net-debug
+        securityContext:
+          privileged: true
