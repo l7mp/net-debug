@@ -58,4 +58,4 @@ RUN apk add --no-cache \
 COPY --from=builder /app/websocat /usr/bin/
 COPY --from=builder /app/turncat /usr/bin/
 
-CMD ["/bin/bash", "-c", "'trap : TERM INT; sleep infinity & wait'"]
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
