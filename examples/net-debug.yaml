@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: net-debug-nonhost
+  name: net-debug
 spec:
   selector:
     matchLabels:
-      app: net-debug-nonhost
+      app: net-debug
   replicas: 1
   template:
     metadata:
       labels:
-        app: net-debug-nonhost
+        app: net-debug
     spec:
       containers:
       - name: net-debug
