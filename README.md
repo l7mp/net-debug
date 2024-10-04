@@ -21,6 +21,10 @@ Usage:
 ```console
 kubectl apply -f examples/net-debug.yaml
 ```
+or
+```console
+kubectl apply -f https://raw.githubusercontent.com/l7mp/net-debug/refs/heads/main/examples/net-debug.yaml
+```
 
 ### Create a Deployment in host network
 Config: [yaml](examples/net-debug-host.yaml)
@@ -28,6 +32,10 @@ Config: [yaml](examples/net-debug-host.yaml)
 Usage:
 ```console
 kubectl apply -f examples/net-debug-host.yaml
+```
+or
+```console
+kubectl apply -f https://raw.githubusercontent.com/l7mp/net-debug/refs/heads/main/examples/net-debug-host.yaml
 ```
 
 ### Create a DeamonSet in host network
@@ -37,6 +45,10 @@ Config: [yaml](examples/net-debug-daemonset.yaml)
 Usage:
 ```console
 kubectl apply -f examples/net-debug-dameonset.yaml
+```
+or
+```console
+kubectl apply -f https://raw.githubusercontent.com/l7mp/net-debug/refs/heads/main/examples/net-debug-daemonset.yaml
 ```
 
 ## Help
