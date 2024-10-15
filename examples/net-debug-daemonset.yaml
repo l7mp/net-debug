@@ -23,6 +23,6 @@ spec:
       hostNetwork: true
       containers:
       - name: net-debug
-        image: l7mp/net-debug
+        image: docker.io/l7mp/net-debug
         securityContext:
           privileged: true
