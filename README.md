@@ -51,6 +51,13 @@ or
 kubectl apply -f https://raw.githubusercontent.com/l7mp/net-debug/refs/heads/main/examples/net-debug-daemonset.yaml
 ```
 
+### Attach to a pod as debug container
+
+To attach net-debug to an existing pod as a [debug container](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_debug/):
+```console
+kubectl debug <pod_name> -it --image=docker.io/l7mp/net-debug -- bash
+```
+
 ## Help
 
 Development is coordinated in Discord, feel free to [join](https://discord.gg/DyPgEsbwzc).
