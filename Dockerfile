@@ -8,7 +8,7 @@ ENV WEBSOCAT_VERSION=v1.13.0
 
 WORKDIR /app
 RUN apk add --no-cache curl upx
-RUN echo $(apk --print-arch)
+
 RUN curl -Lo websocat \
      https://github.com/vi/websocat/releases/download/$WEBSOCAT_VERSION/websocat.$(apk --print-arch)-unknown-linux-musl \
     && chmod a+x websocat \
@@ -52,8 +52,6 @@ RUN apk add --no-cache \
     tar \
     wget \
     tcpreplay
-
-# RUN /usr/sbin/sysctl -w net.ipv4.ip_forward=0
 
 COPY --from=builder /app/websocat /usr/bin/
 COPY --from=builder /app/turncat /usr/bin/
