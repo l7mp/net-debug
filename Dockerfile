@@ -1,7 +1,7 @@
 ###########
 # BUILD
 # Download and compress external binaries
-FROM alpine:3.20 AS builder
+FROM alpine:3.21 AS builder
 
 ENV TURNCAT_VERSION=v1.0.0
 ENV WEBSOCAT_VERSION=v1.13.0
@@ -26,7 +26,7 @@ RUN apkArch="$(apk --print-arch)"; \
 
 ####
 # NET-DEBUG
-FROM alpine:3.20
+FROM alpine:3.21
 
 RUN apk add --no-cache \
     bash \
