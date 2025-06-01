@@ -4,7 +4,7 @@
 FROM alpine:3.22 AS builder
 
 ENV TURNCAT_VERSION=v1.0.0
-ENV WEBSOCAT_VERSION=v1.13.0
+ENV WEBSOCAT_VERSION=v1.14.0
 
 WORKDIR /app
 RUN apk add --no-cache curl upx
