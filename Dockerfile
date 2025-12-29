@@ -4,18 +4,13 @@
 FROM alpine:3.23 AS builder
 
 ENV TURNCAT_VERSION=v1.1.0
-ENV WEBSOCAT_VERSION=v1.14.0
+ENV WEBSOCAT_VERSION=v1.14.1
 
 WORKDIR /app
 RUN apk add --no-cache curl upx
 
-RUN apkArch="$(apk --print-arch)"; \
-      case "$apkArch" in \
-        aarch64) export FILENAME='websocat_max' ;; \
-        *) export FILENAME='websocat' ;; \
-    esac; \
-    curl -Lo websocat \
-     https://github.com/vi/websocat/releases/download/$WEBSOCAT_VERSION/$FILENAME.$(apk --print-arch)-unknown-linux-musl \
+RUN curl -Lo websocat \
+     https://github.com/vi/websocat/releases/download/$WEBSOCAT_VERSION/websocat.$(apk --print-arch)-unknown-linux-musl \
     && chmod a+x websocat \
     && upx --best --lzma websocat
 
