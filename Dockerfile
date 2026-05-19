@@ -51,7 +51,8 @@ RUN apk add --no-cache \
     traceroute \
     tar \
     wget \
-    tcpreplay
+    tcpreplay \
+    minio-client
 
 COPY --from=builder /app/websocat /usr/bin/
 COPY --from=builder /app/turncat /usr/bin/
