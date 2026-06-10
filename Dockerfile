@@ -3,7 +3,7 @@
 # Download and compress external binaries
 FROM alpine:3.23 AS builder
 
-ENV TURNCAT_VERSION=v1.2.0
+ENV TURNCAT_VERSION=v1.2.1
 ENV WEBSOCAT_VERSION=v1.14.1
 
 WORKDIR /app
