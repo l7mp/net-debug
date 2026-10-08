@@ -44,7 +44,7 @@ Config: [yaml](examples/net-debug-daemonset.yaml)
 
 Usage:
 ```console
-kubectl apply -f examples/net-debug-dameonset.yaml
+kubectl apply -f examples/net-debug-daemonset.yaml
 ```
 or
 ```console
