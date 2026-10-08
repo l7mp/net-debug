@@ -16,8 +16,9 @@ RUN curl -Lo websocat \
 
 RUN apkArch="$(apk --print-arch)"; \
       case "$apkArch" in \
+        x86_64) export ARCH='amd64' ;; \
         aarch64) export ARCH='arm64' ;; \
-        *) export ARCH='amd64' ;; \
+        *) echo "unsupported architecture: $apkArch" >&2; exit 1 ;; \
     esac; \
     curl -Lo turncat \
      https://github.com/l7mp/stunner/releases/download/$TURNCAT_VERSION/turncat-$TURNCAT_VERSION-linux-$ARCH \
