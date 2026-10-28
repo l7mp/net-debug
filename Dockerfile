@@ -1,9 +1,15 @@
+ARG STUNNERD_VERSION=2.0.0
+
+###########
+# STUNNERD
+# stunnerd is released as a container image only
+FROM l7mp/stunnerd:$STUNNERD_VERSION AS stunnerd
+
 ###########
 # BUILD
 # Download and compress external binaries
 FROM alpine:3.24 AS builder
 
-ENV TURNCAT_VERSION=v1.2.1
 ENV WEBSOCAT_VERSION=v1.14.1
 
 WORKDIR /app
@@ -14,16 +20,8 @@ RUN curl -Lo websocat \
     && chmod a+x websocat \
     && upx --best --lzma websocat
 
-RUN apkArch="$(apk --print-arch)"; \
-      case "$apkArch" in \
-        x86_64) export ARCH='amd64' ;; \
-        aarch64) export ARCH='arm64' ;; \
-        *) echo "unsupported architecture: $apkArch" >&2; exit 1 ;; \
-    esac; \
-    curl -Lo turncat \
-     https://github.com/l7mp/stunner/releases/download/$TURNCAT_VERSION/turncat-$TURNCAT_VERSION-linux-$ARCH \
-    && chmod a+x turncat \
-    && upx --best --lzma turncat
+COPY --from=stunnerd /usr/bin/stunnerd .
+RUN upx --best --lzma stunnerd
 
 ####
 # NET-DEBUG
@@ -56,6 +54,6 @@ RUN apk add --no-cache \
     minio-client
 
 COPY --from=builder /app/websocat /usr/bin/
-COPY --from=builder /app/turncat /usr/bin/
+COPY --from=builder /app/stunnerd /usr/bin/
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
