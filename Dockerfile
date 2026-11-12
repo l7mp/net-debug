@@ -11,7 +11,7 @@ FROM l7mp/stunnerd:$STUNNER_VERSION AS stunnerd
 FROM alpine:3.24 AS builder
 
 ARG STUNNER_VERSION
-ENV WEBSOCAT_VERSION=v1.14.1
+ENV WEBSOCAT_VERSION=v1.14.2
 
 WORKDIR /app
 RUN apk add --no-cache curl upx
